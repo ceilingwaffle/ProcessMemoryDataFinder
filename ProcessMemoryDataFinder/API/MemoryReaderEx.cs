@@ -7,8 +7,17 @@ namespace ProcessMemoryDataFinder.API
     {
         protected Dictionary<int, SigEx> Signatures = new Dictionary<int, SigEx>();
 
+        /*
+
         protected MemoryReaderEx(string processName, string mainWindowTitleHint = null) : base(processName, mainWindowTitleHint)
         {
+        }
+
+        */
+
+        protected MemoryReaderEx(int processId) : base(processId)
+        {
+
         }
 
         protected override void ProcessChanged()

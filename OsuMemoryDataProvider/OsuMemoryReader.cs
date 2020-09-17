@@ -11,6 +11,7 @@ namespace OsuMemoryDataProvider
     {
         protected readonly object _lockingObject = new object();
 
+        /*
         /// <summary>
         ///     It is strongly encouraged to use single <see cref="OsuMemoryReader" /> instance in order to not have to duplicate
         ///     find-signature-location work
@@ -27,6 +28,12 @@ namespace OsuMemoryDataProvider
         }
 
         public OsuMemoryReader(string mainWindowTitleHint = null) : base("osu!", mainWindowTitleHint)
+        {
+            CreateSignatures();
+        }
+        */
+
+        public OsuMemoryReader(int processId) : base(processId)
         {
             CreateSignatures();
         }
@@ -693,6 +700,7 @@ namespace OsuMemoryDataProvider
 #endif
             }
         }
+
 
 #if DEBUG && MemoryTimes
         private void LogCaller(string prependText)

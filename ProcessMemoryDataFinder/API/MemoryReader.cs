@@ -17,16 +17,28 @@ namespace ProcessMemoryDataFinder.API
 
         private readonly MemoryProcessAddressFinder _internals = new MemoryProcessAddressFinder();
 
+        /*
         private readonly string _processName;
         private readonly string _mainWindowTitleHint;
+        */
+
+        protected readonly int _processId;
+
         private readonly ProcessMemoryReader _reader = new ProcessMemoryReader();
         private readonly SigScan _sigScan = new SigScan();
         private Process _currentProcess;
 
+        /*
         protected MemoryReader(string processName, string mainWindowTitleHint)
         {
             _processName = processName;
             _mainWindowTitleHint = mainWindowTitleHint;
+        }
+        */
+
+        protected MemoryReader(int processId)
+        {
+            _processId = processId;
         }
 
         protected virtual Process CurrentProcess
@@ -117,6 +129,9 @@ namespace ProcessMemoryDataFinder.API
                     return;
                 }
 
+                CurrentProcess = Process.GetProcessById(_processId);
+
+                /*
                 IEnumerable<Process> p = Process.GetProcessesByName(_processName);
                 if(!string.IsNullOrEmpty(_mainWindowTitleHint))
                 {
@@ -127,6 +142,7 @@ namespace ProcessMemoryDataFinder.API
                 {
                     CurrentProcess = resolvedProcess;
                 }
+                */
             }
             catch (Win32Exception)
             {
